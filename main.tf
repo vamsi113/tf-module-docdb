@@ -9,6 +9,7 @@ resource "aws_docdb_subnet_group" "default" {
 }
 
 resource "aws_docdb_cluster" "docdb" {
+  depends_on              = [aws_docdb_subnet_group.default]
   for_each                = var.docdb
   cluster_identifier      = "${var.env}-${each.key}-roboshop-docdb"
   engine                  = each.value.engine
