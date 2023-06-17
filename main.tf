@@ -12,14 +12,14 @@ resource "aws_docdb_cluster" "docdb" {
 
   cluster_identifier      = "${var.env}-${var.name}-roboshop-docdb"
   engine                  =  var.engine
-  master_username         = jsondecode(data.aws_secretsmanager_secret_version.roboshop.secret_string)["DOCDB_USER"]
-  master_password         = jsondecode(data.aws_secretsmanager_secret_version.roboshop.secret_string)["DOCDB_PASS"]
+  master_username         = local.DOCDB_USER
+  master_password         = local.DOCDB_PASS
   skip_final_snapshot     = var.skip_final_snapshot
   db_subnet_group_name    = "${var.env}-${var.name}-roboshop-docdb"
   vpc_security_group_ids = [aws_security_group.sg.id]
 }
 
-resource "aws_docdb_cluster_instance" "cluster_instances" {
+resource "aws_docdb_cluster_instance" "main" {
   for_each           = var.nodes
   identifier         = "${var.env}-${var.name}-roboshop-docdb-${each.key}"
   cluster_identifier = aws_docdb_cluster.docdb.id
