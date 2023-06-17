@@ -12,8 +12,8 @@ resource "aws_docdb_cluster" "docdb" {
 
   cluster_identifier      = "${var.env}-${var.name}-roboshop-docdb"
   engine                  =  var.engine
-  master_username         = "foo"
-  master_password         = "mustbeeightchars"
+  master_username         = jsondecode(data.aws_secretsmanager_secret_version.roboshop.secret_string)["DOCDB_USER"]
+  master_password         = jsondecode(data.aws_secretsmanager_secret_version.roboshop.secret_string)["DOCDB_PASS"]
   skip_final_snapshot     = true
   db_subnet_group_name    = "${var.env}-${var.name}-roboshop-docdb"
 }
