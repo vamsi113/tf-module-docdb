@@ -8,8 +8,8 @@ cd /tmp
 unzip -o mongodb.zip
 cd mongodb-main
 curl -L -O https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
-mongo --ssl --host ${aws_docdb_cluster.docdb.endpoint}:27017 --sslCAFile us-east-1-bundle.pem --username ${local.DOCDB_USER} --password ${local.DOCDB_PASS} < catalogue.js
-mongo --ssl --host ${aws_docdb_cluster.docdb.endpoint}:27017 --sslCAFile us-east-1-bundle.pem --username ${local.DOCDB_USER} --password ${local.DOCDB_PASS} < users.js
+mongo --tls --host ${aws_docdb_cluster.docdb.endpoint}:27017 --tlsCAFile us-east-1-bundle.pem --username ${local.DOCDB_USER} --password ${local.DOCDB_PASS} < catalogue.js
+mongo --tls --host ${aws_docdb_cluster.docdb.endpoint}:27017 --tlsCAFile us-east-1-bundle.pem --username ${local.DOCDB_USER} --password ${local.DOCDB_PASS} < users.js
 EOF
   }
 }
