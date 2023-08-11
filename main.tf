@@ -12,7 +12,7 @@ resource "aws_docdb_cluster" "docdb" {
 
   cluster_identifier      = "${var.env}-${var.name}-roboshop-docdb"
   engine                  =  var.engine
-  #engine_version          =  var.engine_version
+  engine_version          =  var.engine_version
   master_username         = local.DOCDB_USER
   master_password         = local.DOCDB_PASS
   skip_final_snapshot     = var.skip_final_snapshot

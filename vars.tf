@@ -3,7 +3,7 @@
 #variable "subnets" {}
 
 variable "engine" {}
-#variable "engine_version" {}
+variable "engine_version" {}
 variable "name" {}
 variable "env" {}
 variable "subnets" {}
