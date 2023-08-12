@@ -17,7 +17,7 @@ resource "aws_docdb_cluster" "docdb" {
   master_password         = local.DOCDB_PASS
   skip_final_snapshot     = var.skip_final_snapshot
   db_subnet_group_name    = "${var.env}-${var.name}-roboshop-docdb"
-  vpc_security_group_ids = [aws_security_group.sg.id]
+  vpc_security_group_ids  = [aws_security_group.sg.id]
 }
 
 resource "aws_docdb_cluster_instance" "main" {
